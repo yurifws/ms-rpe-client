@@ -10,7 +10,16 @@ import br.com.app.client.entity.ClientEntity;
 import br.com.app.client.model.ClientRequestModel;
 import br.com.app.client.model.ClientResponseModel;
 
+@Mapper(componentModel = "spring", nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL)
 public interface ClientMapper {
+
+	ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
+
+	ClientEntity toEntity(ClientRequestModel clientRequestModel);
+	
+	ClientResponseModel toResponseModel(ClientEntity clientEntity);
+
+	List<ClientResponseModel> toListResponseModel(List<ClientEntity> clientEntities);
 	
 }
 
