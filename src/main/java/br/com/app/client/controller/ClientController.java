@@ -22,6 +22,40 @@ import br.com.app.client.model.ClientResponseModel;
 import br.com.app.client.service.ClientService;
 import lombok.RequiredArgsConstructor;
 
+@RestController
+@RequestMapping(path = PATH_CLIENTS, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class ClientController {
+	
+	private final ClientService clientService;
+	
+	@GetMapping
+	public ResponseEntity<List<ClientResponseModel>> findAll() {
+		return ResponseEntity.ok(clientService.findAll());
+	}
+	
+	@GetMapping(PATH_VARIABLE_ID)
+	public ResponseEntity<ClientResponseModel> searchById(@PathVariable Long id) {
+		return ResponseEntity.ok(clientService.searchById(id));
+	}
+
+	@PostMapping
+	public ResponseEntity<ClientResponseModel> insert(
+			@RequestBody ClientRequestModel clientRequestModel) {
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(clientService.insert(clientRequestModel));
+	}
+
+	@PutMapping(PATH_VARIABLE_ID)
+	public ResponseEntity<ClientResponseModel> update(@PathVariable Long id, 
+			@RequestBody ClientRequestModel clientRequestModel) {
+		return ResponseEntity.ok(clientService.update(id, clientRequestModel));
+	}
+
+	@DeleteMapping(PATH_VARIABLE_ID)
+	public ResponseEntity<Void> removeById(@PathVariable Long id) {
+		clientService.removeById(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }
