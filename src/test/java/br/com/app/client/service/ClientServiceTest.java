@@ -130,19 +130,48 @@ class ClientServiceTest {
 		expected.setName("Name 2");
 		expected.setStatus(ClientStatusEnum.CANCELADO);
 		
+		ClientRequestModel request = ClientRequestModelTestData.getClientRequestModel();
+		request.setName("Name 2");
+		request.setStatus(ClientStatusEnum.CANCELADO);
+		
 
 		when(clientRepository.findById(id)).thenReturn(Optional.of(ClientEntityTestData.getClientEntity()));
+		when(clientRepository.existsByDocument(request.getDocument())).thenReturn(false);
 		when(clientRepository.save(expected)).thenReturn(expected);
+
+		
+		ClientResponseModel actual = clientService.update(id, request);
+
+		verify(clientRepository).findById(id);
+		verify(clientRepository).existsByDocument(request.getDocument());
+		verify(clientRepository).save(expected);
+		
+		assertNotNull(actual);
+	}
+	
+	@Test
+	void update_throwClientAlreadyExistsException() {
+		Long id = 1234L;
+		
+		ClientEntity expected = ClientEntityTestData.getClientEntity();
+		expected.setName("Name 2");
+		expected.setStatus(ClientStatusEnum.CANCELADO);
 		
 		ClientRequestModel request = ClientRequestModelTestData.getClientRequestModel();
 		request.setName("Name 2");
 		request.setStatus(ClientStatusEnum.CANCELADO);
-		ClientResponseModel actual = clientService.update(id, request);
+		
+
+		when(clientRepository.findById(id)).thenReturn(Optional.of(ClientEntityTestData.getClientEntity()));
+		when(clientRepository.existsByDocument(request.getDocument())).thenReturn(true);
+		when(clientRepository.save(expected)).thenReturn(expected);
+
+		assertThrows(ClientAlreadyExistsException.class, () -> clientService.update(id, request));
 
 		verify(clientRepository).findById(id);
-		verify(clientRepository).save(expected);
+		verify(clientRepository).existsByDocument(request.getDocument());
+		verify(clientRepository, times(0)).save(expected);
 		
-		assertNotNull(actual);
 	}
 
 	@Test
