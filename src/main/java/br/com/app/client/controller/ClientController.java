@@ -1,7 +1,7 @@
 package br.com.app.client.controller;
 
-import static br.com.app.client.constants.RestConstants.PATH_VARIABLE_ID;
 import static br.com.app.client.constants.RestConstants.PATH_CLIENTS;
+import static br.com.app.client.constants.RestConstants.PATH_VARIABLE_ID;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.app.client.model.ClientRequestModel;
 import br.com.app.client.model.ClientResponseModel;
-import br.com.app.client.service.ClientService;
+import br.com.app.client.service.IClientService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ClientController {
 	
-	private final ClientService clientService;
+	private final IClientService clientService;
 	
 	@GetMapping
 	public ResponseEntity<List<ClientResponseModel>> findAll() {

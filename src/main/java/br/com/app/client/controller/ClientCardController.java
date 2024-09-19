@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.app.client.model.CardRequestModel;
-import br.com.app.client.service.CardService;
+import br.com.app.client.service.ICardService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ClientCardController {
 	
-	private final CardService cardService;
+	private final ICardService cardService;
 
 	@PostMapping(path = PATH_CARDS)
 	public ResponseEntity<Void> sendMessage(

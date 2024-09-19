@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import br.com.app.client.enuns.StatusEnum;
 import br.com.app.client.model.ClientRequestModel;
 import br.com.app.client.model.ClientResponseModel;
-import br.com.app.client.service.ClientService;
+import br.com.app.client.service.IClientService;
 import br.com.app.client.testdata.ClientRequestModelTestData;
 import br.com.app.client.testdata.ClientResponseModelTestData;
 
@@ -34,7 +34,7 @@ class ClientControllerTest {
 	private MockMvc mockMvc;
 	
 	@MockBean
-	private ClientService clientService;
+	private IClientService clientService;
 	
 	@Test
 	void findAll() throws Exception {
