@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.app.client.entity.ClientEntity;
-import br.com.app.client.enuns.ClientStatusEnum;
+import br.com.app.client.enuns.StatusEnum;
 import br.com.app.client.exception.ClientAlreadyExistsException;
 import br.com.app.client.exception.ClientNotFoundException;
 import br.com.app.client.model.ClientRequestModel;
@@ -128,11 +128,11 @@ class ClientServiceTest {
 		
 		ClientEntity expected = ClientEntityTestData.getClientEntity();
 		expected.setName("Name 2");
-		expected.setStatus(ClientStatusEnum.CANCELADO);
+		expected.setStatus(StatusEnum.CANCELADO);
 		
 		ClientRequestModel request = ClientRequestModelTestData.getClientRequestModel();
 		request.setName("Name 2");
-		request.setStatus(ClientStatusEnum.CANCELADO);
+		request.setStatus(StatusEnum.CANCELADO);
 		
 
 		when(clientRepository.findById(id)).thenReturn(Optional.of(ClientEntityTestData.getClientEntity()));
@@ -155,11 +155,11 @@ class ClientServiceTest {
 		
 		ClientEntity expected = ClientEntityTestData.getClientEntity();
 		expected.setName("Name 2");
-		expected.setStatus(ClientStatusEnum.CANCELADO);
+		expected.setStatus(StatusEnum.CANCELADO);
 		
 		ClientRequestModel request = ClientRequestModelTestData.getClientRequestModel();
 		request.setName("Name 2");
-		request.setStatus(ClientStatusEnum.CANCELADO);
+		request.setStatus(StatusEnum.CANCELADO);
 		
 
 		when(clientRepository.findById(id)).thenReturn(Optional.of(ClientEntityTestData.getClientEntity()));

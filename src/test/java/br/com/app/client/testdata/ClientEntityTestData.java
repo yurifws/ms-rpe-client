@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import br.com.app.client.entity.ClientEntity;
-import br.com.app.client.enuns.ClientStatusEnum;
+import br.com.app.client.enuns.StatusEnum;
 
 public class ClientEntityTestData {
 	
 	public static ClientEntity getClientEntity() {
 		ClientEntity model = new ClientEntity();
 		model.setId(1234L);
-		model.setStatus(ClientStatusEnum.ATIVO);
+		model.setStatus(StatusEnum.ATIVO);
 		model.setName("Name 1");
 		model.setDocument("001023145610");
 		model.setDateOfBirth(LocalDate.of(1994, 10, 21));

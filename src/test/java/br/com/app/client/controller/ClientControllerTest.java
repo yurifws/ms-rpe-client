@@ -20,7 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import br.com.app.client.enuns.ClientStatusEnum;
+import br.com.app.client.enuns.StatusEnum;
 import br.com.app.client.model.ClientRequestModel;
 import br.com.app.client.model.ClientResponseModel;
 import br.com.app.client.service.ClientService;
@@ -118,13 +118,13 @@ class ClientControllerTest {
 		Long id = 1234L;
 		ClientRequestModel request = ClientRequestModelTestData.getClientRequestModel();
 		request.setName("Name 2");
-		request.setStatus(ClientStatusEnum.CANCELADO);
+		request.setStatus(StatusEnum.CANCELADO);
 		request.setDocument("00212312344");
 		request.setDateOfBirth(LocalDate.of(1995, 9, 25));
 		
 		ClientResponseModel expected = ClientResponseModelTestData.getClientResponseModel();
 		expected.setName("Name 2");
-		expected.setStatus(ClientStatusEnum.CANCELADO);
+		expected.setStatus(StatusEnum.CANCELADO);
 		expected.setDocument("00212312344");
 		expected.setDateOfBirth(LocalDate.of(1995, 9, 25));
 		

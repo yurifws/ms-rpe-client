@@ -3,7 +3,7 @@ package br.com.app.client.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import br.com.app.client.enuns.ClientStatusEnum;
+import br.com.app.client.enuns.StatusEnum;
 import lombok.Data;
 
 @Data
@@ -15,7 +15,7 @@ public class ClientResponseModel {
 	
 	private String document;
 	
-	private ClientStatusEnum status;
+	private StatusEnum status;
 	
 	private LocalDate dateOfBirth;
 	
