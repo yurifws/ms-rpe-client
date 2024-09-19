@@ -31,10 +31,10 @@ import br.com.app.client.testdata.ClientResponseModelTestData;
 class ClientControllerTest {
 
 	@Autowired
-	private MockMvc mockMvc;
+	MockMvc mockMvc;
 	
 	@MockBean
-	private IClientService clientService;
+	IClientService clientService;
 	
 	@Test
 	void findAll() throws Exception {
