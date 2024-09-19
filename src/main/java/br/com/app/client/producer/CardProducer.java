@@ -11,13 +11,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CardProducer {
 
-	@Value("${cloud.aws.sqs.queue.name}")
-	private String queueName;
+	@Value("${spring.cloud.aws.sqs.queue.uri}")
+	private String queueUri;
 	
 	private final SqsTemplate sqsTemplate;
 	
 	public void sendMessage(String message) {
-		sqsTemplate.send(queueName, MessageBuilder.withPayload(message).build());
+		sqsTemplate.send(queueUri, MessageBuilder.withPayload(message).build());
 	}
 
 }

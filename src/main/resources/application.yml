@@ -10,17 +10,17 @@ spring:
   properties:
     hibernate:
      dialect: org.hibernate.dialect.PostgreSQL82Dialect
-     
-cloud:
- aws:
-  stack:
-    auto: false
-  credentials:
-    accessKey: accessKey
-    secretKey: secretKey
-  region:
-    static: us-east-1
-  sqs:
-    endpoint: http://localhost:4566
-    queue:
-      name: queue-card
+ cloud:
+  aws:
+   stack:
+     auto: false
+   credentials:
+     accessKey: accessKey
+     secretKey: secretKey
+   region:
+     static: us-east-1
+   sqs:
+     endpoint: http://localhost:4566
+     queue:
+       uri: http://localhost:4566/000000000000/queue-card
+       name: queue-card
