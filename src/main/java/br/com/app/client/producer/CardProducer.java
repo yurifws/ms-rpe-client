@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CardProducer {
 
-	@Value("${aws.sqs.queue.name}")
+	@Value("${cloud.aws.sqs.queue.name}")
 	private String queueName;
 	
 	private final QueueMessagingTemplate queueMessagingTemplate;

@@ -1,5 +1,6 @@
 package br.com.app.client.controller;
 
+import static br.com.app.client.constants.RestConstants.PATH_CARDS;
 import static br.com.app.client.constants.RestConstants.PATH_CLIENTS;
 import static br.com.app.client.constants.RestConstants.PATH_VARIABLE_ID;
 
@@ -22,7 +23,7 @@ public class ClientCardController {
 	
 	private final CardService cardService;
 
-	@PostMapping
+	@PostMapping(path = PATH_CARDS)
 	public ResponseEntity<Void> sendMessage(
 			@RequestBody CardRequestModel cardRequestModel) {
 		cardService.sendMessage(cardRequestModel);
