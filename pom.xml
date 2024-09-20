@@ -80,6 +80,10 @@
 		    <artifactId>aws-java-sdk-sqs</artifactId>
 		    <version>${aws-java-sdk-sqs.version}</version>
 		</dependency>
+		<dependency>
+	        <groupId>org.springframework.cloud</groupId>
+	        <artifactId>spring-cloud-starter-openfeign</artifactId>
+	    </dependency>
 	</dependencies>
 	
 	<dependencyManagement>

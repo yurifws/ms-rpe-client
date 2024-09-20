@@ -24,3 +24,8 @@ spring:
      queue:
        uri: http://localhost:4566/000000000000/queue-card
        name: queue-card
+feign:
+  client:
+    config:
+      card-service:
+        url: ${CARDS_URL:http://localhost:9103/cards}
