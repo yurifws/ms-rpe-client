@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import br.com.app.client.ContextBaseTests;
 import br.com.app.client.model.CardRequestModel;
 import br.com.app.client.model.FullClientResponseModel;
 import br.com.app.client.service.ICardService;
@@ -23,7 +25,7 @@ import br.com.app.client.testdata.CardRequestModelTestData;
 import br.com.app.client.testdata.FullClientResponseModelTestData;
 
 @WebMvcTest(ClientCardController.class)
-class ClientCardControllerTest {
+class ClientCardControllerTest extends ContextBaseTests {
 	
 	@Autowired
 	private MockMvc mockMvc;
@@ -50,6 +52,7 @@ class ClientCardControllerTest {
 				""";
 		
 		mockMvc.perform(MockMvcRequestBuilders.post(PATH_CLIENTS_CARDS, id)
+				.with(SecurityMockMvcRequestPostProcessors.jwt())
 				.content(body)
 				.accept(MediaType.APPLICATION_JSON_VALUE)
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
@@ -67,6 +70,7 @@ class ClientCardControllerTest {
 		when(cardService.getCardByClientId(id)).thenReturn(expected);
 		
 		mockMvc.perform(MockMvcRequestBuilders.get(PATH_CLIENTS_CARDS, id)
+				.with(SecurityMockMvcRequestPostProcessors.jwt())
 				.accept(MediaType.APPLICATION_JSON_VALUE)
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 		.andDo(print())

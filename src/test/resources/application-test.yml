@@ -32,3 +32,5 @@ feign:
     config:
       card-service:
         url: ${CARDS_URL:http://localhost:9103/cards}
+algorithm:
+ secret: secret

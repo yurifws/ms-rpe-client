@@ -11,7 +11,8 @@ public enum ProblemType {
 	INVALID_PARAMETER("/parametro-invalido", "Parâmetro inválido"),
 	INCOMPREHENSIVE_MESSAGE("/mensagem-incompreensivel", "Mensagem incompreensível"),
 	RESOURCE_NOT_FOUND("/recurso-nao-encontrado", "Recurso não encontrado"),
-	BUSINESS_ERROR("/erro-negocio", "Violação de regra de negócio");
+	BUSINESS_ERROR("/erro-negocio", "Violação de regra de negócio"),
+	UNAUTHORIZED_ERROR("/sem-autorizacao", "Sem autorização");
 	
 	private final String uri;
 	private final String title;
