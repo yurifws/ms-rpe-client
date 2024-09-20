@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.app.client.enuns.ClientStatusEnum;
+import br.com.app.client.enuns.StatusEnum;
 import lombok.Data;
 
 @Data
@@ -14,7 +14,7 @@ public class ClientRequestModel {
 	
 	private String document;
 	
-	private ClientStatusEnum status;
+	private StatusEnum status;
 	
 	@JsonFormat(pattern = "yyyyMMdd")
 	private LocalDate dateOfBirth;

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import br.com.app.client.enuns.ClientStatusEnum;
+import br.com.app.client.enuns.StatusEnum;
 import lombok.Data;
 
 @Data
@@ -36,7 +36,7 @@ public class ClientEntity {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "client_status")
-	private ClientStatusEnum status;
+	private StatusEnum status;
 	
 	@Column(name = "client_date_of_birth")
 	private LocalDate dateOfBirth;

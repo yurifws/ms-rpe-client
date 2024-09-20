@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum ClientStatusEnum {
+public enum StatusEnum {
 
 	ATIVO("ATIVO"),
 	BLOQUEADO("BLOQUEADO"),
