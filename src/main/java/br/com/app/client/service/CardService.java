@@ -19,9 +19,8 @@ public class CardService implements ICardService {
 	@Override
 	public void sendMessage(CardRequestModel cardRequestModel) {
 		ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
-		String json;
 		try {
-			json = objectWriter.writeValueAsString(cardRequestModel);
+			String json = objectWriter.writeValueAsString(cardRequestModel);
 			cardProducer.sendMessage(json);
 		} catch (Exception ex) {
 			throw new BusinessException(ex.getMessage(), ex);	

@@ -52,7 +52,7 @@ class ClientCardControllerTest {
 				.accept(MediaType.APPLICATION_JSON_VALUE)
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 		.andDo(print())
-		.andExpect(status().isCreated());
+		.andExpect(status().isAccepted());
 
 		verify(cardService).sendMessage(request);
 	}

@@ -27,7 +27,7 @@ public class ClientCardController {
 	public ResponseEntity<Void> sendMessage(
 			@RequestBody CardRequestModel cardRequestModel) {
 		cardService.sendMessage(cardRequestModel);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+		return ResponseEntity.status(HttpStatus.ACCEPTED).build();
 	}
 
 }
