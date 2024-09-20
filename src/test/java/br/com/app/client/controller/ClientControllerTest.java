@@ -17,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import br.com.app.client.ContextBaseTests;
 import br.com.app.client.enuns.StatusEnum;
 import br.com.app.client.model.ClientRequestModel;
 import br.com.app.client.model.ClientResponseModel;
@@ -28,7 +30,7 @@ import br.com.app.client.testdata.ClientRequestModelTestData;
 import br.com.app.client.testdata.ClientResponseModelTestData;
 
 @WebMvcTest(ClientController.class)
-class ClientControllerTest {
+class ClientControllerTest extends ContextBaseTests {
 
 	@Autowired
 	MockMvc mockMvc;
@@ -43,6 +45,7 @@ class ClientControllerTest {
 		when(clientService.findAll()).thenReturn(expected);
 		
 		mockMvc.perform(MockMvcRequestBuilders.get(PATH_CLIENTS)
+				.with(SecurityMockMvcRequestPostProcessors.jwt())
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 		.andDo(print())
 		.andExpect(status().isOk())
@@ -66,6 +69,7 @@ class ClientControllerTest {
 		when(clientService.searchById(id)).thenReturn(expected);
 		
 		mockMvc.perform(MockMvcRequestBuilders.get(PATH_CLIENTS + PATH_VARIABLE_ID, id)
+				.with(SecurityMockMvcRequestPostProcessors.jwt())
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 		.andDo(print())
 		.andExpect(status().isOk())
@@ -97,6 +101,7 @@ class ClientControllerTest {
 				""";
 		
 		mockMvc.perform(MockMvcRequestBuilders.post(PATH_CLIENTS)
+				.with(SecurityMockMvcRequestPostProcessors.jwt())
 				.content(body)
 				.accept(MediaType.APPLICATION_JSON_VALUE)
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
@@ -140,6 +145,7 @@ class ClientControllerTest {
 				""";
 		
 		mockMvc.perform(MockMvcRequestBuilders.put(PATH_CLIENTS + PATH_VARIABLE_ID, id)
+				.with(SecurityMockMvcRequestPostProcessors.jwt())
 				.content(body)
 				.accept(MediaType.APPLICATION_JSON_VALUE)
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
@@ -163,6 +169,7 @@ class ClientControllerTest {
 		doNothing().when(clientService).removeById(id);
 		
 		mockMvc.perform(MockMvcRequestBuilders.delete(PATH_CLIENTS + PATH_VARIABLE_ID, id)
+				.with(SecurityMockMvcRequestPostProcessors.jwt())
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 		.andDo(print())
 		.andExpect(status().isNoContent());

@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.exc.PropertyBindingException;
 
 import br.com.app.client.exception.BusinessException;
 import br.com.app.client.exception.EntityNotFoundException;
+import br.com.app.client.exception.UnauthorizedInvalidSessionException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -209,6 +210,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		}
 		return super.handleExceptionInternal(ex, body, headers, status, request);
 	}	
+	
+	@ExceptionHandler(UnauthorizedInvalidSessionException.class)
+	public ResponseEntity<Object> handleUnauthorizedInvalidSessionException(UnauthorizedInvalidSessionException ex, WebRequest request) {
+		HttpStatus status = HttpStatus.UNAUTHORIZED;
+		ProblemType problemType = ProblemType.UNAUTHORIZED_ERROR;
+		String message = ex.getMessage();
+
+		Problem problem = createProblemBuilder(status, problemType, message).build();
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
 
 	private Problem.ProblemBuilder createProblemBuilder(HttpStatus status, ProblemType problemType, String message) {
 		return Problem.builder()

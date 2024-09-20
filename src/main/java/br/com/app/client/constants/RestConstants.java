@@ -10,4 +10,6 @@ public class RestConstants {
 	
 	public static final String PATH_CLIENTS_CARDS = PATH_CLIENTS+PATH_VARIABLE_ID+PATH_CARDS;
 
+	public static final String PATH_LOGIN = "/login"; 
+
 }
