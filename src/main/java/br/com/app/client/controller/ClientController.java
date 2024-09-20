@@ -17,14 +17,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.app.client.configuration.WebSecurityConfig;
 import br.com.app.client.model.ClientRequestModel;
 import br.com.app.client.model.ClientResponseModel;
 import br.com.app.client.service.IClientService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = PATH_CLIENTS, produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
+@SecurityRequirement(name = WebSecurityConfig.SCHEMA_AUTH)
 public class ClientController {
 	
 	private final IClientService clientService;
