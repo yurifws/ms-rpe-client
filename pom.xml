@@ -21,6 +21,7 @@
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 		<aws-java-sdk-sqs.version>1.12.772</aws-java-sdk-sqs.version>
 		<cloud-messaging.version>2.3.3</cloud-messaging.version>
+		<springdoc-openapi-ui.version>1.6.15</springdoc-openapi-ui.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -100,6 +101,11 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-ui</artifactId>
+		    <version>${springdoc-openapi-ui.version}</version> 
 		</dependency>
 	</dependencies>
 	
