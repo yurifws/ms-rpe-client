@@ -1,6 +1,7 @@
 package br.com.app.client.configuration;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Component
 public class FilterToken extends OncePerRequestFilter {
+	
+	private static final String[] URLS_SHOULD_NOT_FILTER_LIST = {"/swagger-ui", "/v3/api-docs", "/actuator"};
 
 	private final TokenService tokenService;
 	private final IUserService userService;
@@ -45,9 +48,22 @@ public class FilterToken extends OncePerRequestFilter {
 					new UsernamePasswordAuthenticationToken(userEntity, null, userEntity.getAuthorities());
 
 			SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+			
+			
 		}
 
 		filterChain.doFilter(request, response);
+	}
+	
+	@Override
+	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+		String path = request.getRequestURI();
+		if(Arrays.stream(URLS_SHOULD_NOT_FILTER_LIST).anyMatch(path::contains)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }

@@ -14,13 +14,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @Profile("!test")
+@SecurityScheme(name = WebSecurityConfig.SCHEMA_AUTH, type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 public class WebSecurityConfig {
+	
+	public static final String SCHEMA_AUTH = "bearerAuth";
 	
 	private final FilterToken filterToken;
 
@@ -39,7 +44,7 @@ public class WebSecurityConfig {
 		http
 		.addFilterBefore(filterToken, UsernamePasswordAuthenticationFilter.class)
 		.authorizeRequests((authorize) -> authorize
-				.antMatchers(PATH_LOGIN).permitAll()
+				.antMatchers(PATH_LOGIN, "/swagger-ui/**", "/v3/api-docs/**", "/actuator").permitAll()
 				.anyRequest().authenticated()
 				)
 		.csrf().disable()

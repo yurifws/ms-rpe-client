@@ -12,14 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.app.client.configuration.WebSecurityConfig;
 import br.com.app.client.model.CardRequestModel;
 import br.com.app.client.model.FullClientResponseModel;
 import br.com.app.client.service.ICardService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = PATH_CLIENTS_CARDS, produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
+@SecurityRequirement(name = WebSecurityConfig.SCHEMA_AUTH)
 public class ClientCardController {
 	
 	private final ICardService cardService;
