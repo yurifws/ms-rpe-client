@@ -2,6 +2,7 @@ package br.com.app.client.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import br.com.app.client.enuns.StatusEnum;
 import lombok.Data;
@@ -23,6 +24,6 @@ public class FullClientResponseModel {
 	
 	private LocalDateTime dateUpdated;
 
-    private CardResponseModel card;
+    private List<CardResponseModel> cards;
 
 }

@@ -2,6 +2,8 @@ package br.com.app.client.testdata;
 
 import static br.com.app.client.testdata.CardResponseModelTestData.getCardResponseModel;
 
+import java.util.List;
+
 import br.com.app.client.model.ClientResponseModel;
 import br.com.app.client.model.FullClientResponseModel;
 
@@ -17,7 +19,7 @@ public class FullClientResponseModelTestData {
 		model.setDateOfBirth(clientResponseModel.getDateOfBirth());
 		model.setDateCreated(clientResponseModel.getDateCreated());
 		model.setDateUpdated(clientResponseModel.getDateUpdated());
-		model.setCard(getCardResponseModel());
+		model.setCards(List.of(getCardResponseModel()));
 		
 		return model;
 	}

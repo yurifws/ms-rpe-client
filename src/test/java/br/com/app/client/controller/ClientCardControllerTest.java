@@ -78,18 +78,18 @@ class ClientCardControllerTest {
 		.andExpect(jsonPath("$.status").value(expected.getStatus().name()))
 		.andExpect(jsonPath("$.dateCreated").value(expected.getDateCreated().toString()))
 		.andExpect(jsonPath("$.dateUpdated").value(expected.getDateUpdated().toString()))
-		.andExpect(jsonPath("$.card.id").value(expected.getCard().getId()))
-		.andExpect(jsonPath("$.card.number").value(expected.getCard().getNumber()))
-		.andExpect(jsonPath("$.card.password").value(expected.getCard().getPassword()))
-		.andExpect(jsonPath("$.card.status").value(expected.getCard().getStatus().name()))
-		.andExpect(jsonPath("$.card.holderName").value(expected.getCard().getHolderName()))
-		.andExpect(jsonPath("$.card.dateCreated").value(expected.getCard().getDateCreated().toString()))
-		.andExpect(jsonPath("$.card.dateUpdated").value(expected.getCard().getDateUpdated().toString()))
-		.andExpect(jsonPath("$.card.product.id").value(expected.getCard().getProduct().getId()))
-		.andExpect(jsonPath("$.card.product.description").value(expected.getCard().getProduct().getDescription()))
-		.andExpect(jsonPath("$.card.product.status").value(expected.getCard().getProduct().getStatus().name()))
-		.andExpect(jsonPath("$.card.product.dateCreated").value(expected.getCard().getProduct().getDateCreated().toString()))
-		.andExpect(jsonPath("$.card.product.dateUpdated").value(expected.getCard().getProduct().getDateUpdated().toString()));
+		.andExpect(jsonPath("$.cards[0].id").value(expected.getCards().get(0).getId()))
+		.andExpect(jsonPath("$.cards[0].number").value(expected.getCards().get(0).getNumber()))
+		.andExpect(jsonPath("$.cards[0].password").value(expected.getCards().get(0).getPassword()))
+		.andExpect(jsonPath("$.cards[0].status").value(expected.getCards().get(0).getStatus().name()))
+		.andExpect(jsonPath("$.cards[0].holderName").value(expected.getCards().get(0).getHolderName()))
+		.andExpect(jsonPath("$.cards[0].dateCreated").value(expected.getCards().get(0).getDateCreated().toString()))
+		.andExpect(jsonPath("$.cards[0].dateUpdated").value(expected.getCards().get(0).getDateUpdated().toString()))
+		.andExpect(jsonPath("$.cards[0].product.id").value(expected.getCards().get(0).getProduct().getId()))
+		.andExpect(jsonPath("$.cards[0].product.description").value(expected.getCards().get(0).getProduct().getDescription()))
+		.andExpect(jsonPath("$.cards[0].product.status").value(expected.getCards().get(0).getProduct().getStatus().name()))
+		.andExpect(jsonPath("$.cards[0].product.dateCreated").value(expected.getCards().get(0).getProduct().getDateCreated().toString()))
+		.andExpect(jsonPath("$.cards[0].product.dateUpdated").value(expected.getCards().get(0).getProduct().getDateUpdated().toString()));
 
 		verify(cardService).getCardByClientId(id);
 

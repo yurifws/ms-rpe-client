@@ -1,5 +1,7 @@
 package br.com.app.client.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +31,7 @@ public class CardService implements ICardService {
 		ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		try {
 			String json = objectWriter.writeValueAsString(cardRequestModel);
+			clientService.searchById(cardRequestModel.getClientId());
 			cardProducer.sendMessage(json);
 		} catch (Exception ex) {
 			throw new BusinessException(ex.getMessage(), ex);	
@@ -40,9 +43,9 @@ public class CardService implements ICardService {
 	public FullClientResponseModel getCardByClientId(Long id) {
 		try {
 			ClientResponseModel clientResponseModel = clientService.searchById(id);
-			CardResponseModel cardResponseModel = cardClient.getCardByClientId(clientResponseModel.getId());
+			List<CardResponseModel> cardResponseModels = cardClient.getCardByClientId(clientResponseModel.getId());
 			
-			return ClientMapper.INSTANCE.toResponseModel(clientResponseModel, cardResponseModel);
+			return ClientMapper.INSTANCE.toResponseModel(clientResponseModel, cardResponseModels);
 		}catch (Exception ex) {
 			throw new BusinessException(ex.getMessage(), ex);
 		}

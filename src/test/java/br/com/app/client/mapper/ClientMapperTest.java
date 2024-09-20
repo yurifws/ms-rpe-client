@@ -74,7 +74,7 @@ class ClientMapperTest {
 		
 		ClientResponseModel clientResponseModel = ClientResponseModelTestData.getClientResponseModel();
 		CardResponseModel cardResponseModel = CardResponseModelTestData.getCardResponseModel();
-		FullClientResponseModel actual = ClientMapper.INSTANCE.toResponseModel(clientResponseModel, cardResponseModel);
+		FullClientResponseModel actual = ClientMapper.INSTANCE.toResponseModel(clientResponseModel, List.of(cardResponseModel));
 		
 		assertNotNull(actual);
 		assertEquals(clientResponseModel.getId(), actual.getId());
@@ -84,17 +84,17 @@ class ClientMapperTest {
 		assertEquals(clientResponseModel.getStatus(), actual.getStatus());
 		assertEquals(clientResponseModel.getDateCreated(), actual.getDateCreated());
 		assertEquals(clientResponseModel.getDateUpdated(), actual.getDateUpdated());
-		assertEquals(cardResponseModel.getId(), actual.getCard().getId());
-		assertEquals(cardResponseModel.getNumber(), actual.getCard().getNumber());
-		assertEquals(cardResponseModel.getPassword(), actual.getCard().getPassword());
-		assertEquals(cardResponseModel.getStatus(), actual.getCard().getStatus());
-		assertEquals(cardResponseModel.getHolderName(), actual.getCard().getHolderName());
-		assertEquals(cardResponseModel.getDateCreated(), actual.getCard().getDateCreated());
-		assertEquals(cardResponseModel.getDateUpdated(), actual.getCard().getDateUpdated());
-		assertEquals(cardResponseModel.getProduct().getId(), actual.getCard().getProduct().getId());
-		assertEquals(cardResponseModel.getProduct().getDescription(), actual.getCard().getProduct().getDescription());
-		assertEquals(cardResponseModel.getProduct().getStatus(), actual.getCard().getProduct().getStatus());
-		assertEquals(cardResponseModel.getProduct().getDateCreated(), actual.getCard().getProduct().getDateCreated());
-		assertEquals(cardResponseModel.getProduct().getDateUpdated(), actual.getCard().getProduct().getDateUpdated());
+		assertEquals(cardResponseModel.getId(), actual.getCards().get(0).getId());
+		assertEquals(cardResponseModel.getNumber(), actual.getCards().get(0).getNumber());
+		assertEquals(cardResponseModel.getPassword(), actual.getCards().get(0).getPassword());
+		assertEquals(cardResponseModel.getStatus(), actual.getCards().get(0).getStatus());
+		assertEquals(cardResponseModel.getHolderName(), actual.getCards().get(0).getHolderName());
+		assertEquals(cardResponseModel.getDateCreated(), actual.getCards().get(0).getDateCreated());
+		assertEquals(cardResponseModel.getDateUpdated(), actual.getCards().get(0).getDateUpdated());
+		assertEquals(cardResponseModel.getProduct().getId(), actual.getCards().get(0).getProduct().getId());
+		assertEquals(cardResponseModel.getProduct().getDescription(), actual.getCards().get(0).getProduct().getDescription());
+		assertEquals(cardResponseModel.getProduct().getStatus(), actual.getCards().get(0).getProduct().getStatus());
+		assertEquals(cardResponseModel.getProduct().getDateCreated(), actual.getCards().get(0).getProduct().getDateCreated());
+		assertEquals(cardResponseModel.getProduct().getDateUpdated(), actual.getCards().get(0).getProduct().getDateUpdated());
 	}
 }
