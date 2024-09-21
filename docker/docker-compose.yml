@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbrpe
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack-container
+    environment:
+      - SERVICES=sqs
+      - AWS_DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"
+    volumes:
+      - "./localstack_data:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  redis:
+    image: "redis:alpine"
+    container_name: redis-container
+    ports:
+      - "6379:6379"
+  aws-cli:
+    image: amazon/aws-cli:latest
+    container_name: aws-cli-container
+    entrypoint: ["/bin/sh", "-c", "until aws --endpoint-url=http://localstack-container:4566 sqs create-queue --queue-name queue-card; do sleep 2; done"]
+    environment:
+      - AWS_ACCESS_KEY_ID=accessKey
+      - AWS_SECRET_ACCESS_KEY=secretKey
+      - AWS_DEFAULT_REGION=us-east-1
+    depends_on:
+      - localstack
