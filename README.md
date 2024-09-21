@@ -1,6 +1,10 @@
 # ms-rpe-client
 
 
+#Fluxo de tarefas realizadas:
+	https://trello.com/b/PVHlFzKY/rpe-sistema-portadores-de-cartao
+
+
 #### Especificação técnica:
 	Java 17
 	Maven 3+
