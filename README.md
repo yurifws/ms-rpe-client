@@ -46,6 +46,15 @@
 	#- Passo 4
 	Dentro do projeto '/ms-rpe-client' também contem a collection 'COLLECTION_RPE_SISTEMA.json' para execuçao dos endpoints já configurados.
 
+### BASE PATHS LOCAIS
+	localhost:9101 - PRODUTOS
+	localhost:9102 - CLIENTES
+	localhost:9103 - CARTOES
+	
+	http://localhost:9101/swagger-ui/index.html - SWAGGER PRODUTOS
+	http://localhost:9102/swagger-ui/index.html - SWAGGER CLIENTES
+	http://localhost:9103/swagger-ui/index.html - SWAGGER CARTOES
+	
 	
 Obs:Necessário ter Java, Docker e algum gerenciador de banco de dados para Postgresql(pgAdmin) e Insominia ou Postman para realizar as chamadas nos endpoints.
 
